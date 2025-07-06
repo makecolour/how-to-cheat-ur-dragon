@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      .endpoint {
+        background: #f4f4f4;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border-left: 4px solid #007acc;
+      }
+      .button {
+        background: #007acc;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 5px;
+      }
+      .button:hover {
+        background: #005a9e;
+      }
+      .config {
+        background: #e8f4f8;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tutor4u.tech Traffic Generator</h1>
+    <p>Multiple Instance Web Scraper for Google Analytics</p>
+    
+    <div class="config">
+      <h3>Configuration</h3>
+      <ul>
+        <li>Max Concurrent Instances: 5</li>
+        <li>Default Instances: 3</li>
+        <li>Scroll Sessions: 3-7 per instance</li>
+        <li>Scroll Distance: 200-1000px</li>
+        <li>Wait Time: 1-3 seconds between scrolls</li>
+        <li>Stay Time: 5-15 seconds on page</li>
+      </ul>
+    </div>
+    
+    <h2>Available Endpoints</h2>
+    
+    <div class="endpoint">
+      <h3>Single Instance</h3>
+      <p><strong>GET /scroll</strong> - Run a single browser instance</p>
+      <a href="/scroll" class="button">Run Single Instance</a>
+    </div>
+    
+    <div class="endpoint">
+      <h3>Multiple Instances</h3>
+      <p><strong>GET /scroll-multi</strong> - Run multiple browser instances concurrently</p>
+      <p>Optional parameter: <code>?instances=N</code> (default: 3, max: 5)</p>
+      <a href="/scroll-multi" class="button">Run 3 Instances</a>
+      <a href="/scroll-multi?instances=5" class="button">Run 5 Instances</a>
+    </div>
+    
+    <div class="endpoint">
+      <h3>Continuous Scrolling</h3>
+      <p><strong>GET /scroll-continuous</strong> - Start continuous scrolling with intervals</p>
+      <p>Optional parameters:</p>
+      <ul>
+        <li><code>?interval=N</code> - Interval in milliseconds (default: 300000 = 5 minutes)</li>
+        <li><code>?instances=N</code> - Number of instances per run (default: 3)</li>
+      </ul>
+      <a href="/scroll-continuous" class="button">Start Continuous (5min intervals)</a>
+      <a href="/scroll-continuous?interval=180000&instances=5" class="button">Start Continuous (3min, 5 instances)</a>
+    </div>
+    
+    <div class="endpoint">
+      <h3>Scrolling with Page Reloads</h3>
+      <p><strong>GET /scroll-reload</strong> - Run multiple instances with page reloads</p>
+      <p>Optional parameters:</p>
+      <ul>
+        <li><code>?instances=N</code> - Number of instances (default: 3)</li>
+        <li><code>?reloads=N</code> - Number of reloads per instance (default: 3)</li>
+      </ul>
+      <a href="/scroll-reload" class="button">Run with Reloads (3x3)</a>
+      <a href="/scroll-reload?instances=5&reloads=5" class="button">Run with Reloads (5x5)</a>
+    </div>
+    
+    <div class="endpoint">
+      <h3>Continuous Scrolling with Reloads</h3>
+      <p><strong>GET /scroll-reload-continuous</strong> - Start continuous scrolling with page reloads</p>
+      <p>Optional parameters:</p>
+      <ul>
+        <li><code>?interval=N</code> - Interval in milliseconds (default: 300000 = 5 minutes)</li>
+        <li><code>?instances=N</code> - Number of instances per run (default: 3)</li>
+        <li><code>?reloads=N</code> - Number of reloads per instance (default: 3)</li>
+      </ul>
+      <a href="/scroll-reload-continuous" class="button">Start Continuous with Reloads</a>
+      <a href="/scroll-reload-continuous?interval=240000&instances=4&reloads=4" class="button">Start Continuous (4min, 4x4)</a>
+    </div>
+    
+    <div class="endpoint">
+      <h3>Stop Continuous</h3>
+      <p><strong>GET /scroll-stop</strong> - Stop continuous scrolling</p>
+      <a href="/scroll-stop" class="button">Stop Continuous</a>
+    </div>
+    
+    <h2>Usage Examples</h2>
+    <ul>
+      <li><strong>Quick test:</strong> <code>curl http://localhost:3000/scroll</code></li>
+      <li><strong>Multiple instances:</strong> <code>curl http://localhost:3000/scroll-multi?instances=4</code></li>
+      <li><strong>Continuous (2min intervals):</strong> <code>curl http://localhost:3000/scroll-continuous?interval=120000</code></li>
+    </ul>
+    
+    <h2>Features</h2>
+    <ul>
+      <li>✅ Multiple concurrent browser instances</li>
+      <li>✅ Random scrolling patterns</li>
+      <li>✅ Realistic user simulation</li>
+      <li>✅ Configurable instance count</li>
+      <li>✅ Continuous operation support</li>
+      <li>✅ Error handling and logging</li>
+      <li>✅ Promise-based concurrent execution</li>
+      <li>✅ Page reloads between scrolling sessions</li>
+      <li>✅ Configurable reload count per instance</li>
+      <li>✅ Combined continuous scrolling with reloads</li>
+    </ul>
+  </body>
+</html>
